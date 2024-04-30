@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magic Eight Ball</title>
+  <style>
+    .eight-ball {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script>
+    const EightBall = ({ answers }) => {
+      const getRandomAnswer = () => {
+        const randomIndex = Math.floor(Math.random() * answers.length);
+        return answers[randomIndex];
+      };
+
+      const handleClick = () => {
+        const { msg, color } = getRandomAnswer();
+        eightBall.innerText = msg;
+        eightBall.style.backgroundColor = color;
+      };
+
+      const app = document.getElementById("app");
+      const eightBall = document.createElement("div");
+      eightBall.className = "eight-ball";
+      eightBall.innerText = "Think of a Question";
+      eightBall.addEventListener("click", handleClick);
+
+      app.appendChild(eightBall);
+    };
+
+    const answers = [
+      { msg: "It is certain.", color: "green" },
+      { msg: "It is decidedly so.", color: "green" },
+      { msg: "Without a doubt.", color: "green" },
+      { msg: "Yes - definitely.", color: "green" },
+      { msg: "You may rely on it.", color: "green" },
+      { msg: "As I see it, yes.", color: "green" },
+      { msg: "Most likely.", color: "green" },
+      { msg: "Outlook good.", color: "green" },
+      { msg: "Yes.", color: "green" },
+      { msg: "Signs point to yes.", color: "goldenrod" },
+      { msg: "Reply hazy, try again.", color: "goldenrod" },
+      { msg: "Ask again later.", color: "goldenrod" },
+      { msg: "Better not tell you now.", color: "goldenrod" },
+      { msg: "Cannot predict now.", color: "goldenrod" },
+      { msg: "Concentrate and ask again.", color: "goldenrod" },
+      { msg: "Don't count on it.", color: "red" },
+      { msg: "My reply is no.", color: "red" },
+      { msg: "My sources say no.", color: "red" },
+      { msg: "Outlook not so good.", color: "red" },
+      { msg: "Very doubtful.", color: "red" },
+    ];
+
+    EightBall({ answers });
+  </script>
+</body>
+</html>
